@@ -16,6 +16,7 @@ const userSchema = new Schema(
         },
         web: {
             type: String,
+            required: false,
             trim: true,
             lowercase: true
         },
@@ -34,7 +35,7 @@ const userSchema = new Schema(
             trim: true,
             default: 0
         },
-        availability: {//establecer mensajes en en caso de que ingresen una disponibilidad diferente a las que se van a manejar
+        availability: {
             type: String,
             enum: ['local', 'nacional', 'internacional'],
             default: 'local'
