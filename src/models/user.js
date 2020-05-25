@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');//mandar los mensajes 
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
     {
@@ -12,7 +12,8 @@ const userSchema = new Schema(
             type: String,
             required: [true, 'El correo es necesario'],
             trim: true,
-            lowercase: true
+            lowercase: true,
+            unique: true
         },
         web: {
             type: String,
