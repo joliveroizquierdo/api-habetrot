@@ -12,6 +12,25 @@ getUsers = async (req, res) => {
     }
 }
 
+detailUser = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        console.log(id)
+
+        const result = await User.findOne({ _id: id });
+
+        if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
+
+        res.status(200).json({ usuario: result });
+
+    }
+    catch (err) {
+        res.status(400).json({ error: err });
+    }
+}
+
 createUser = async (req, res) => {
     try {
 
@@ -67,6 +86,7 @@ deleteUser = async (req, res) => {
 module.exports = {
     getUsers,
     createUser,
+    detailUser,
     updateUser,
     deleteUser
 }
