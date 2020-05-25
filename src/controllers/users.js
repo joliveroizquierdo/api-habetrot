@@ -34,6 +34,12 @@ createUser = async (req, res) => {
 
         const { name, email, web, phone, location } = req.body;
 
+        const usuario = await User.findOne({ email });
+
+        if(usuario) {
+            return res.status(400).json({ mensaje: 'Ya existe un usuario con ese correo' });
+        }
+
         const newUser = new User({ name, email, web, phone, location });
         const result = await newUser.save();
 
