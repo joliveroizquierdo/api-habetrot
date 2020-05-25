@@ -17,9 +17,7 @@ detailUser = async (req, res) => {
 
         const { id } = req.params;
 
-        console.log(id)
-
-        const result = await User.findOne({ _id: id });
+        const result = await User.findById(id);
 
         if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
 
