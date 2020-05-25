@@ -13,5 +13,6 @@ app.use(express.json());
 // routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/activities', require('./routes/activities'));
+app.use('/api/skills', require('./routes/skills'));
 
 module.exports = app;
