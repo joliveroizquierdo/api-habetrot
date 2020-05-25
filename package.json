@@ -4,6 +4,7 @@
   "description": "Api en nodejs para la administración de los datos en una base de datos mongodb",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
@@ -11,11 +12,11 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.15"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "dotenv": "^8.2.0"
   }
 }
