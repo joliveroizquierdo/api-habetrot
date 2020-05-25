@@ -12,81 +12,79 @@ getActivities = async (req, res) => {
     }
 }
 
-// detailUser = async (req, res) => {
-//     try {
+detailActivity = async (req, res) => {
+    try {
 
-//         const { id } = req.params;
+        const { id } = req.params;
 
-//         const result = await User.findById(id);
+        const result = await Activity.findById(id);
 
-//         if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
+        if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado una actividad con ese id' })
 
-//         res.status(200).json({ usuario: result });
+        res.status(200).json({ actividad: result });
 
-//     }
-//     catch (err) {
-//         res.status(400).json({ error: err });
-//     }
-// }
+    }
+    catch (err) {
+        res.status(400).json({ error: err });
+    }
+}
 
-// createUser = async (req, res) => {
-//     try {
+createActivity = async (req, res) => {
+    try {
 
-//         const { name, email, web, phone, location } = req.body;
+        const { name, user_id } = req.body;
 
-//         const usuario = await User.findOne({ email });
+        const newActivity = new Activity({ name, user_id });
+        const result = await newActivity.save();
 
-//         if(usuario) {
-//             return res.status(400).json({ mensaje: 'Ya existe un usuario con ese correo' });
-//         }
+        res.status(201).json({ mensaje: 'Activity created', resultado: result });
 
-//         const newUser = new User({ name, email, web, phone, location });
-//         const result = await newUser.save();
+    } catch (e) {
+        console.log(e)
+        res.json({ mensaje: e.message });
+    }
+}
 
-//         res.status(201).json({ mensaje: 'User created', resultado: result });
+updateActivity = async (req, res) => {
+    try {
 
-//     } catch (e) {
-//         console.log(e)
-//         res.json({ mensaje: e.message });
-//     }
-// }
+        const { name, gold_rating, silver_rating } = req.body;
+        const { id } = req.params;
 
-// updateUser = async (req, res) => {
-//     try {
+        const result = await Activity.findByIdAndUpdate(id, { name, gold_rating, silver_rating });
 
-//         const { name, email, web, phone, location } = req.body;
-//         const { id } = req.params;
+        if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado una actividad con ese id' })
 
-//         const result = await User.findByIdAndUpdate(id, { name, email, web, phone, location });
-
-//         if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
-
-//         res.json({ mensaje: 'User Updated', resultado: result });
+        res.json({ mensaje: 'Activity Updated', resultado: result });
         
-//     } catch (e) {
-//         console.log(e)
-//         res.json({ mensaje: e.message });
-//     }
-// }
+    } catch (e) {
+        console.log(e)
+        res.json({ mensaje: e.message });
+    }
+}
 
-// deleteUser = async (req, res) => {
-//     try {
+deleteActivity = async (req, res) => {
+    try {
         
-//         const { id } = req.params;
+        const { id } = req.params;
 
-//         const result = await User.findByIdAndDelete(id);
+        const result = await Activity.findByIdAndDelete(id);
 
-//         if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
+        if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado una actividad con ese id' })
 
-//         res.json({ mensaje: 'User deleted', resultado: result });
+        res.json({ mensaje: 'Activity deleted', resultado: result });
 
-//     } catch (e) {
-//         console.log(e)
-//         res.json({ mensaje: e.message });
-//     }
+    } catch (e) {
+        console.log(e)
+        res.json({ mensaje: e.message });
+    }
 
-// }
+}
 
 module.exports = {
-    getActivities
+    getActivities,
+    detailActivity,
+    createActivity,
+    updateActivity,
+    deleteActivity
 }
