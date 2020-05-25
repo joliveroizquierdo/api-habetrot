@@ -35,6 +35,9 @@ updateUser = async (req, res) => {
         const { id } = req.params;
 
         const result = await User.findByIdAndUpdate(id, { name, email, web, phone, location });
+
+        if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
+
         res.json({ mensaje: 'User Updated', resultado: result });
         
     } catch (e) {
@@ -49,6 +52,9 @@ deleteUser = async (req, res) => {
         const { id } = req.params;
 
         const result = await User.findByIdAndDelete(id);
+
+        if(!result) return res.status(404).json({ mensaje: 'No hemos encontrado un usuario con ese id' })
+
         res.json({ mensaje: 'User deleted', resultado: result });
 
     } catch (e) {
