@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const router = Router();
+const { Router } = require('express')
+const router = Router()
 
-const { getActivities, createActivity, detailActivity, updateActivity, deleteActivity } = require('../controllers/activities');
+const { getActivities, createActivity, detailActivity, updateActivity, deleteActivity } = require('../controllers/activities')
 
 router.route('/').get(getActivities)
 router.route('/').post(createActivity)

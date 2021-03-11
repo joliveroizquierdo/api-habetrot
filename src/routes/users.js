@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const router = Router();
+const { Router } = require('express')
+const router = Router()
 
-const { getUsers, createUser, detailUser, updateUser, deleteUser } = require('../controllers/users');
+const { getUsers, createUser, detailUser, updateUser, deleteUser } = require('../controllers/users')
 
 router.route('/').get(getUsers)
 router.route('/').post(createUser)

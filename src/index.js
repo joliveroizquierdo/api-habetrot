@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env'});//en caso de que  o exista el archivo .file con las variables definidas, se toman los valore por defecto al cumplirse el ||
+require('dotenv').config();
 require('./config/database');
 
 const app = require('./app');
